@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pf_timer/configs/AppColors.dart';
+import 'package:pf_timer/data/timers.dart';
 import 'package:pf_timer/widgets/gradient_app_bar.dart';
 
 class Home extends StatefulWidget {
@@ -29,23 +30,23 @@ class HomePageBody extends StatefulWidget {
 class _HomePageBodyState extends State<HomePageBody> {
   @override
   Widget build(BuildContext context) {
-    return new Expanded(
-      child: new Container(
-        color: new Color(0xFF736AB7),
-        child: new CustomScrollView(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: false,
-          slivers: <Widget>[
-            new SliverPadding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
-              sliver: new SliverList(
-                delegate: new SliverChildBuilderDelegate(
-                      (context, index) => new PlanetSummary(planets[index]),
-                  childCount: planets.length,
-                ),
-              ),
-            ),
-          ],
+    return Expanded(
+      child: GridView.builder(
+        physics: BouncingScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 1.4,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
+        padding: EdgeInsets.only(left: 28, right: 28, bottom: 58),
+        itemCount: timers.length,
+        itemBuilder: (context, index) => PokemonCard(
+          timers[index],
+          index: index,
+          onPress: () {
+            Navigator.of(context).pushNamed("/pokemon-info");
+          },
         ),
       ),
     );
