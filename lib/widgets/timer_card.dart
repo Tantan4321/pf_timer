@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pf_timer/configs/AppColors.dart';
 import 'package:pf_timer/models/timer.dart';
 
 String _formattedIndex(int index) {
@@ -41,7 +42,7 @@ class TimerCard extends StatelessWidget {
                 child: Text(
                   timer.name,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 26,
                     height: 0.7,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -61,10 +62,9 @@ class TimerCard extends StatelessWidget {
       Positioned(
         bottom: -itemHeight * 0.136,
         right: -itemHeight * 0.034,
-        child: Image.asset(
-          "assets/images/pokeball.png",
-          width: itemHeight * 0.754,
-          height: itemHeight * 0.754,
+        child: Icon(
+          Icons.gavel,
+          size: itemHeight * 0.754,
           color: Colors.white.withOpacity(0.14),
         ),
       ),
@@ -72,9 +72,15 @@ class TimerCard extends StatelessWidget {
         bottom: 8,
         right: 12,
         child: Hero(
-          tag: timer.name,
+          tag: index,
           child: Text(
-            timer.time.toString()
+            timer.time.inMinutes.toString() + ":00",
+            style: TextStyle(
+              fontSize: 26,
+              height: 0.7,
+              fontWeight: FontWeight.bold,
+              color: AppColors.blueberry,
+            ),
           ),
         ),
       ),
