@@ -9,7 +9,9 @@ class AppThemes {
   );
 
   static ThemeData kDefaultTheme = new ThemeData(
-    primarySwatch: Colors.blue,
+    primarySwatch: Colors.lightBlue[600],
+    primaryColorLight: Colors.lightBlue[400],
+    primaryColorDark: Colors.lightBlue[600],
     accentColor: Colors.orangeAccent[400],
     cardColor: Colors.lightBlue[700],
   );
