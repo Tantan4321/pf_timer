@@ -15,7 +15,7 @@ const List<Timer> timers = [
   Timer(
     name: "1CX",
     time: Duration(minutes: 3),
-    color: AppColors.lightRed,
+    color: AppColors.coralRed,
   ),
   Timer(
     name: "2AR",
@@ -30,7 +30,7 @@ const List<Timer> timers = [
   Timer(
     name: "2CX",
     time: Duration(minutes: 3),
-    color: AppColors.lightRed,
+    color: AppColors.coralRed,
   ),
   Timer(
     name: "1ASUM",
@@ -45,7 +45,7 @@ const List<Timer> timers = [
   Timer(
     name: "GCX",
     time: Duration(minutes: 3),
-    color: AppColors.lightRed,
+    color: AppColors.coralRed,
   ),
   Timer(
     name: "2AFF",

@@ -14,7 +14,8 @@ class _HomeState extends State<Home> {
     return new Scaffold(
       body: new Column(
         children: <Widget>[
-          new GradientAppBar(Theme.of(context).primaryColor, Theme.of(context).accentColor, Colors.black, "PF Timer"),
+          new GradientAppBar(Theme.of(context).primaryColor,
+              Theme.of(context).accentColor, Colors.black, "PF Timer"),
           new HomePageBody()
         ],
       ),
@@ -43,25 +44,31 @@ class _HomePageBodyState extends State<HomePageBody> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: GridView.builder(
+      child: CustomScrollView(
         physics: BouncingScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 1.4,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-        ),
-        padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 58),
-        itemCount: timers.length,
-        itemBuilder: (context, index) => TimerCard(
-          timers[index],
-          index: index,
-          onPress: () {
-            //Navigator.of(context).pushNamed("/pokemon-info");
-          },
-        ),
+        slivers: <Widget>[
+          SliverPadding(
+            padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 58),
+            sliver: SliverGrid(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.4,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) => TimerCard(
+                        timers[index],
+                        index: index,
+                        onPress: () {
+                          //Navigator.of(context).pushNamed("/pokemon-info");
+                        },
+                      ),
+              childCount: timers.length),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
-
