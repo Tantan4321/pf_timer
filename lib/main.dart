@@ -12,6 +12,7 @@ class PfTimer extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: defaultTargetPlatform == TargetPlatform.iOS
           ? AppThemes.kIOSTheme
           : AppThemes.kDefaultTheme,

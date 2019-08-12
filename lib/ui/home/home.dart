@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pf_timer/configs/AppColors.dart';
 import 'package:pf_timer/data/timers.dart';
 import 'package:pf_timer/widgets/gradient_app_bar.dart';
 import 'package:pf_timer/widgets/timer_card.dart';
@@ -18,6 +17,18 @@ class _HomeState extends State<Home> {
           new GradientAppBar(Theme.of(context).primaryColor, Theme.of(context).accentColor, Colors.black, "PF Timer"),
           new HomePageBody()
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.restore),
+        label: Text("Reset",
+            style: TextStyle(
+              fontSize: 16,
+              letterSpacing: 0.5,
+              height: 1.2,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            )),
       ),
     );
   }
