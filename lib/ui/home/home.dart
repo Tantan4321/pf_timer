@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pf_timer/configs/AppColors.dart';
 import 'package:pf_timer/data/timers.dart';
 import 'package:pf_timer/widgets/gradient_app_bar.dart';
+import 'package:pf_timer/widgets/timer_card.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -39,13 +40,13 @@ class _HomePageBodyState extends State<HomePageBody> {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
         ),
-        padding: EdgeInsets.only(left: 28, right: 28, bottom: 58),
+        padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 58),
         itemCount: timers.length,
-        itemBuilder: (context, index) => PokemonCard(
+        itemBuilder: (context, index) => TimerCard(
           timers[index],
           index: index,
           onPress: () {
-            Navigator.of(context).pushNamed("/pokemon-info");
+            //Navigator.of(context).pushNamed("/pokemon-info");
           },
         ),
       ),
