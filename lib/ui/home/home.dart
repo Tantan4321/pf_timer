@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pf_timer/configs/AppColors.dart';
 import 'package:pf_timer/data/timers.dart';
 import 'package:pf_timer/widgets/gradient_app_bar.dart';
 import 'package:pf_timer/widgets/timer_card.dart';
@@ -15,7 +16,7 @@ class _HomeState extends State<Home> {
       body: new Column(
         children: <Widget>[
           new GradientAppBar(Theme.of(context).primaryColor,
-              Theme.of(context).accentColor, Colors.black, "PF Timer"),
+              Theme.of(context).accentColor, AppColors.gunmetal, "PF Timer"),
           new HomePageBody()
         ],
       ),
