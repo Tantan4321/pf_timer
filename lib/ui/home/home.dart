@@ -43,29 +43,184 @@ class HomePageBody extends StatefulWidget {
 class _HomePageBodyState extends State<HomePageBody> {
   @override
   Widget build(BuildContext context) {
+    var i = 0;
+
     return Expanded(
       child: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverPadding(
-            padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 58),
-            sliver: SliverGrid(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.4,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) => TimerCard(
-                        timers[index],
-                        index: index,
-                        onPress: () {
-                          //Navigator.of(context).pushNamed("/pokemon-info");
-                        },
-                      ),
-              childCount: timers.length),
+            padding: EdgeInsets.only(
+              left: 10,
+              right: 10,
+              top: 10,
             ),
+            sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.4,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                delegate: SliverChildListDelegate([
+                  TimerCard(
+                    timers[i],
+                    index: i++,
+                    onPress: () {
+                      //Navigator.of(context).pushNamed("/pokemon-info");
+                    },
+                  ),
+                  TimerCard(
+                    timers[i],
+                    index: i++,
+                    onPress: () {
+                      //Navigator.of(context).pushNamed("/pokemon-info");
+                    },
+                  ),
+                ])),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+            sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  childAspectRatio: 2.8,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                delegate: SliverChildListDelegate([
+                  TimerCard(
+                    timers[i],
+                    index: i++,
+                    onPress: () {
+                      //Navigator.of(context).pushNamed("/pokemon-info");
+                    },
+                  )
+                ])),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.only(
+              left: 10,
+              right: 10,
+              top: 10,
+            ),
+            sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.4,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                delegate: SliverChildListDelegate([
+                  TimerCard(
+                    timers[i],
+                    index: i++,
+                    onPress: () {
+                      //Navigator.of(context).pushNamed("/pokemon-info");
+                    },
+                  ),
+                  TimerCard(
+                    timers[i],
+                    index: i++,
+                    onPress: () {
+                      //Navigator.of(context).pushNamed("/pokemon-info");
+                    },
+                  ),
+                ])),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+            sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  childAspectRatio: 2.8,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                delegate: SliverChildListDelegate([
+                  TimerCard(
+                    timers[i],
+                    index: i++,
+                    onPress: () {
+                      //Navigator.of(context).pushNamed("/pokemon-info");
+                    },
+                  )
+                ])),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.only(
+              left: 10,
+              right: 10,
+              top: 10,
+            ),
+            sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.4,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                delegate: SliverChildListDelegate([
+                  TimerCard(
+                    timers[i],
+                    index: i++,
+                    onPress: () {
+                      //Navigator.of(context).pushNamed("/pokemon-info");
+                    },
+                  ),
+                  TimerCard(
+                    timers[i],
+                    index: i++,
+                    onPress: () {
+                      //Navigator.of(context).pushNamed("/pokemon-info");
+                    },
+                  ),
+                ])),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+            sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  childAspectRatio: 2.8,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                delegate: SliverChildListDelegate([
+                  TimerCard(
+                    timers[i],
+                    index: i++,
+                    onPress: () {
+                      //Navigator.of(context).pushNamed("/pokemon-info");
+                    },
+                  )
+                ])),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 68),
+            sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.4,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                delegate: SliverChildListDelegate([
+                  TimerCard(
+                    timers[i],
+                    index: i++,
+                    onPress: () {
+                      //Navigator.of(context).pushNamed("/pokemon-info");
+                    },
+                  ),
+                  TimerCard(
+                    timers[i],
+                    index: i++,
+                    onPress: () {
+                      //Navigator.of(context).pushNamed("/pokemon-info");
+                    },
+                  ),
+                ])),
           ),
         ],
       ),
