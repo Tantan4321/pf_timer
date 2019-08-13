@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pf_timer/configs/AppColors.dart';
 import 'package:pf_timer/data/timers.dart';
+import 'package:pf_timer/ui/timer/timer.dart';
 import 'package:pf_timer/widgets/gradient_app_bar.dart';
 import 'package:pf_timer/widgets/timer_card.dart';
 
 class Home extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       body: new Column(
         children: <Widget>[
           new GradientAppBar(
-            primary: Theme
-                .of(context)
-                .primaryColor,
-            secondary: Theme
-                .of(context)
-                .accentColor,
+            primary: Theme.of(context).primaryColor,
+            secondary: Theme.of(context).accentColor,
             textColor: AppColors.gunmetal,
             title: "PF Timer",
             leading: IconButton(
@@ -41,17 +37,18 @@ class Home extends StatelessWidget {
               fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
+        onPressed: () {},
       ),
     );
   }
 
-  void _handleMenuButton() {
-
-  }
+  void _handleMenuButton() {}
 }
 
 class HomePageBody extends StatelessWidget {
-  const HomePageBody({Key key, }) : super(key: key);
+  const HomePageBody({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +83,7 @@ class HomePageBody extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: () {
-                      //Navigator.of(context).pushNamed("/pokemon-info");
+                      _toTimer(context);
                     },
                   ),
                 ])),
@@ -236,6 +233,19 @@ class HomePageBody extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _toTimer(BuildContext context) {
+    Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => Timer(),
+          transitionsBuilder: (_, animation, __, child) => FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+        )
     );
   }
 }
