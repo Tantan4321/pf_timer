@@ -4,7 +4,8 @@ import 'package:pf_timer/configs/AppColors.dart';
 class AppThemes {
   static ThemeData kIOSTheme = new ThemeData(
     primarySwatch: Colors.red,
-    primaryColor: AppColors.mikadoYellow,
+    primaryColor: AppColors.coralRed,
+    accentColor: AppColors.mikadoYellow,
     cardColor: AppColors.gunmetal,
     primaryColorBrightness: Brightness.light,
   );
