@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "811263640359",
+    "firebase_url": "https://pf-timer.firebaseio.com",
+    "project_id": "pf-timer",
+    "storage_bucket": "pf-timer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811263640359:android:e70ca64c5357e859",
+        "android_client_info": {
+          "package_name": "com.tantan4321.pf_timer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811263640359-knv6i9r5vfrgc9btr7j8d2a6okjjn55o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6zZezLr5ed0eChvoUb3lUTnir6Qz360k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811263640359-knv6i9r5vfrgc9btr7j8d2a6okjjn55o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
