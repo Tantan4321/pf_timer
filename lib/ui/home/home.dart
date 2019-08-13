@@ -15,8 +15,22 @@ class _HomeState extends State<Home> {
     return new Scaffold(
       body: new Column(
         children: <Widget>[
-          new GradientAppBar(Theme.of(context).primaryColor,
-              Theme.of(context).accentColor, AppColors.gunmetal, "PF Timer"),
+          new GradientAppBar(
+            primary: Theme
+                .of(context)
+                .primaryColor,
+            secondary: Theme
+                .of(context)
+                .accentColor,
+            textColor: AppColors.gunmetal,
+            title: "PF Timer",
+            leading: IconButton(
+              icon: const Icon(Icons.menu),
+              iconSize: 40.0,
+              color: AppColors.gunmetal,
+              onPressed: () => _handleMenuButton(),
+            ),
+          ),
           new HomePageBody()
         ],
       ),
@@ -33,6 +47,10 @@ class _HomeState extends State<Home> {
             )),
       ),
     );
+  }
+
+  void _handleMenuButton() {
+
   }
 }
 
