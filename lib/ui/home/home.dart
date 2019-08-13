@@ -4,12 +4,8 @@ import 'package:pf_timer/data/timers.dart';
 import 'package:pf_timer/widgets/gradient_app_bar.dart';
 import 'package:pf_timer/widgets/timer_card.dart';
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
+class Home extends StatelessWidget {
 
-class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -54,12 +50,9 @@ class _HomeState extends State<Home> {
   }
 }
 
-class HomePageBody extends StatefulWidget {
-  @override
-  _HomePageBodyState createState() => _HomePageBodyState();
-}
+class HomePageBody extends StatelessWidget {
+  const HomePageBody({Key key, }) : super(key: key);
 
-class _HomePageBodyState extends State<HomePageBody> {
   @override
   Widget build(BuildContext context) {
     var i = 0;
