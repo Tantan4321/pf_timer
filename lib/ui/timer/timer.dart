@@ -95,7 +95,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                                         child: CustomPaint(
                                             painter: CustomTimerPainter(
                                           animation: _controller,
-                                          backgroundColor: Colors.white,
+                                          backgroundColor: AppColors.grey,
                                           color: themeData.indicatorColor,
                                         )),
                                       ),
