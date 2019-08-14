@@ -1,46 +1,46 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Counter {
-  Counter({this.id, this.value});
+class TimeStore {
+  TimeStore({this.id, this.value});
   int id;
   int value;
 }
 
 abstract class Database {
-  Future<void> createCounter();
-  Future<void> setCounter(Counter counter);
-  Future<void> deleteCounter(Counter counter);
-  Stream<List<Counter>> countersStream();
+  Future<void> createTimer();
+  Future<void> setTime(TimeStore counter);
+  Future<void> deleteTimer(TimeStore counter);
+  Stream<List<TimeStore>> timersStream();
 }
 
 // Cloud Firestore
 class AppFirestore implements Database {
 
-  Future<void> createCounter() async {
+  Future<void> createTimer() async {
     int now = DateTime.now().millisecondsSinceEpoch;
-    Counter counter = Counter(id: now, value: 0);
-    await setCounter(counter);
+    TimeStore counter = TimeStore(id: now, value: 0);
+    await setTime(counter);
   }
-  Future<void> setCounter(Counter counter) async {
+  Future<void> setTime(TimeStore counter) async {
 
     _documentReference(counter).setData({
       'value' : counter.value,
     });
   }
 
-  Future<void> deleteCounter(Counter counter) async {
+  Future<void> deleteTimer(TimeStore counter) async {
     _documentReference(counter).delete();
   }
 
-  Stream<List<Counter>> countersStream() {
-    return _FirestoreStream<List<Counter>>(
+  Stream<List<TimeStore>> timersStream() {
+    return _FirestoreStream<List<TimeStore>>(
       apiPath: rootPath,
       parser: FirestoreCountersParser(),
     ).stream;
   }
 
-  DocumentReference _documentReference(Counter counter) {
+  DocumentReference _documentReference(TimeStore counter) {
     return Firestore.instance.collection(rootPath).document('${counter.id}');
   }
 
@@ -52,10 +52,10 @@ abstract class FirestoreNodeParser<T> {
   T parse(QuerySnapshot querySnapshot);
 }
 
-class FirestoreCountersParser extends FirestoreNodeParser<List<Counter>> {
-  List<Counter> parse(QuerySnapshot querySnapshot) {
+class FirestoreCountersParser extends FirestoreNodeParser<List<TimeStore>> {
+  List<TimeStore> parse(QuerySnapshot querySnapshot) {
     var counters = querySnapshot.documents.map((documentSnapshot) {
-      return Counter(
+      return TimeStore(
         id: int.parse(documentSnapshot.documentID),
         value: documentSnapshot['value'],
       );
