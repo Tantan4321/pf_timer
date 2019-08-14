@@ -3,6 +3,7 @@ import 'package:pf_timer/configs/AppColors.dart';
 import 'package:pf_timer/models/timer.dart';
 import 'package:pf_timer/widgets/custom_timer_painter.dart';
 import 'package:pf_timer/widgets/gradient_app_bar.dart';
+import 'package:pf_timer/widgets/wave_animation.dart';
 
 class TimerPage extends StatefulWidget {
   const TimerPage({
@@ -45,7 +46,9 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
-    _controller.resync(this);
+    Size size = new Size(MediaQuery.of(context).size.width,
+        MediaQuery.of(context).size.height - 66);
+
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -67,16 +70,15 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
               builder: (context, child) {
                 return Stack(
                   children: <Widget>[
-                    //TODO: implement background animation
-                    /*Align(
+                    Align(
                       alignment: Alignment.bottomCenter,
-                      child:
-                      Container(
-                        color: Colors.amber,
-                        height:
-                        _controller.value * MediaQuery.of(context).size.height,
+                      child: AnimatedBuilder(
+                        animation: _controller,
+                        builder: (context, child) {
+                          return DemoBody(size: size, color: timer.color);
+                        },
                       ),
-                    ),*/
+                    ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
