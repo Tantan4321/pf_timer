@@ -29,8 +29,11 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    print(timer.time.toString());
-    _controller = AnimationController(vsync: this, duration: Duration(minutes: timer.time.inMinutes));
+    _controller = AnimationController(
+      value: 1.0, //TODO: initial completion percentage, call from database
+      vsync: this,
+      duration: Duration(minutes: timer.time.inMinutes),
+    );
   }
 
   @override
@@ -42,6 +45,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    _controller.resync(this);
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -88,18 +92,18 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                                     Positioned.fill(
                                       child: CustomPaint(
                                           painter: CustomTimerPainter(
-                                            animation: _controller,
-                                            backgroundColor: Colors.white,
-                                            color: themeData.indicatorColor,
-                                          )),
+                                        animation: _controller,
+                                        backgroundColor: Colors.white,
+                                        color: themeData.indicatorColor,
+                                      )),
                                     ),
                                     Align(
                                       alignment: FractionalOffset.center,
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                            MainAxisAlignment.spaceEvenly,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
                                             "Count Down Timer",
@@ -146,8 +150,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                     icon: Icon(_controller.isAnimating
                         ? Icons.pause
                         : Icons.play_arrow),
-                    label: Text(
-                        _controller.isAnimating ? "Pause" : "Play"));
+                    label: Text(_controller.isAnimating ? "Pause" : "Play"));
               }),
         ],
       ),
