@@ -64,6 +64,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
             ),
           ),
           Expanded(
+            //TODO: implement smooth reset animations
             child: AnimatedBuilder(
               animation: _controller,
               builder: (context, child) {

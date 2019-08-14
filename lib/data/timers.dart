@@ -57,4 +57,15 @@ const List<Timer> timers = [
     time: Duration(minutes: 2),
     color: AppColors.mikadoYellow,
   ),
+  Timer(
+    name: "APREP",
+    time: Duration(minutes: 3),
+    color: AppColors.teal,
+  ),
+  Timer(
+    name: "NPREP",
+    time: Duration(minutes: 3),
+    color: AppColors.teal,
+  ),
+
 ];
