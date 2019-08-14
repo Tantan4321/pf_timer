@@ -82,20 +82,20 @@ class Home extends StatelessWidget {
       ],
     );
   }
+}
 
-  void _toTimer(BuildContext context, Timer timer) {
-    Navigator.push(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (_, __, ___) => TimerPage(
-            timer: timer,
-          ),
-          transitionsBuilder: (_, animation, __, child) => FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
-        ));
-  }
+void _toTimer(BuildContext context, Timer timer) {
+  Navigator.push(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => TimerPage(
+          timer: timer,
+        ),
+        transitionsBuilder: (_, animation, __, child) => FadeTransition(
+          opacity: animation,
+          child: child,
+        ),
+      ));
 }
 
 class HomePageBody extends StatelessWidget {
@@ -155,8 +155,8 @@ class HomePageBody extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                    _toTimer(context, timers[index]);
-                  },
+                      _toTimer(context, timers[index]);
+                    },
                   )
                 ])),
           ),
@@ -178,15 +178,15 @@ class HomePageBody extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                    _toTimer(context, timers[index]);
-                  },
+                      _toTimer(context, timers[index]);
+                    },
                   ),
                   TimerCard(
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                    _toTimer(context, timers[index]);
-                  },
+                      _toTimer(context, timers[index]);
+                    },
                   ),
                 ])),
           ),
@@ -204,8 +204,8 @@ class HomePageBody extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                    _toTimer(context, timers[index]);
-                  },
+                      _toTimer(context, timers[index]);
+                    },
                   )
                 ])),
           ),
@@ -227,15 +227,15 @@ class HomePageBody extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                    _toTimer(context, timers[index]);
-                  },
+                      _toTimer(context, timers[index]);
+                    },
                   ),
                   TimerCard(
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                    _toTimer(context, timers[index]);
-                  },
+                      _toTimer(context, timers[index]);
+                    },
                   ),
                 ])),
           ),
@@ -253,8 +253,8 @@ class HomePageBody extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                    _toTimer(context, timers[index]);
-                  },
+                      _toTimer(context, timers[index]);
+                    },
                   )
                 ])),
           ),
@@ -272,34 +272,20 @@ class HomePageBody extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                    _toTimer(context, timers[index]);
-                  },
+                      _toTimer(context, timers[index]);
+                    },
                   ),
                   TimerCard(
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                    _toTimer(context, timers[index]);
-                  },
+                      _toTimer(context, timers[index]);
+                    },
                   ),
                 ])),
           ),
         ],
       ),
     );
-  }
-
-  void _toTimer(BuildContext context, Timer timer) {
-    Navigator.push(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (_, __, ___) => TimerPage(
-            timer: timer,
-          ),
-          transitionsBuilder: (_, animation, __, child) => FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
-        ));
   }
 }

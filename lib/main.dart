@@ -24,13 +24,6 @@ class PfTimer extends StatelessWidget {
     switch (settings.name) {
       case "/":
         return FadeRoute(page: Home());
-      /*
-      case '/pokedex':
-        return FadeRoute(page: Pokedex());
-
-      case '/pokemon-info':
-        return FadeRoute(page: PokemonInfo());
-      */
 
       default:
         return null;
