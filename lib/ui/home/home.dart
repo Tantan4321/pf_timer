@@ -46,16 +46,12 @@ class Home extends StatelessWidget {
   void _handleMenuButton() {}
 }
 
-class HomePageBody extends StatefulWidget {
+class HomePageBody extends StatelessWidget {
   const HomePageBody({
     Key key,
   }) : super(key: key);
 
-  @override
-  _HomePageBodyState createState() => _HomePageBodyState();
-}
 
-class _HomePageBodyState extends State<HomePageBody> {
   @override
   Widget build(BuildContext context) {
     var i = 0;
@@ -81,15 +77,13 @@ class _HomePageBodyState extends State<HomePageBody> {
                   TimerCard(
                     timers[i],
                     index: i++,
-                    onPress: () {
-                      //Navigator.of(context).pushNamed("/pokemon-info");
-                    },
+                    onPress: (index) {
+                      _toTimer(context, timers[index]);                    },
                   ),
                   TimerCard(
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      print(index);
                       _toTimer(context, timers[index]);
                     },
                   ),

@@ -19,6 +19,8 @@ class TimerPage extends StatefulWidget {
 class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   AnimationController _controller;
 
+  Timer get timer => widget.timer;
+
   String get timerString {
     Duration d = _controller.duration * _controller.value;
     return '${d.inMinutes}:${(d.inSeconds % 60).toString().padLeft(2, '0')}';
@@ -27,7 +29,14 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.timer.time);
+    print(timer.time.toString());
+    _controller = AnimationController(vsync: this, duration: Duration(minutes: timer.time.inMinutes));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -70,42 +79,45 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                         Expanded(
                           child: Align(
                             alignment: FractionalOffset.center,
-                            child: AspectRatio(
-                              aspectRatio: 1.0,
-                              child: Stack(
-                                children: <Widget>[
-                                  Positioned.fill(
-                                    child: CustomPaint(
-                                        painter: CustomTimerPainter(
-                                          animation: _controller,
-                                          backgroundColor: Colors.white,
-                                          color: themeData.indicatorColor,
-                                        )),
-                                  ),
-                                  Align(
-                                    alignment: FractionalOffset.center,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Text(
-                                          "Count Down Timer",
-                                          style: TextStyle(
-                                              fontSize: 20.0,
-                                              color: Colors.black),
-                                        ),
-                                        Text(
-                                          timerString,
-                                          style: TextStyle(
-                                              fontSize: 112.0,
-                                              color: Colors.black),
-                                        ),
-                                      ],
+                            child: Padding(
+                              padding: const EdgeInsets.all(48.0),
+                              child: AspectRatio(
+                                aspectRatio: 1.0,
+                                child: Stack(
+                                  children: <Widget>[
+                                    Positioned.fill(
+                                      child: CustomPaint(
+                                          painter: CustomTimerPainter(
+                                            animation: _controller,
+                                            backgroundColor: Colors.white,
+                                            color: themeData.indicatorColor,
+                                          )),
                                     ),
-                                  ),
-                                ],
+                                    Align(
+                                      alignment: FractionalOffset.center,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                            "Count Down Timer",
+                                            style: TextStyle(
+                                                fontSize: 20.0,
+                                                color: Colors.black),
+                                          ),
+                                          Text(
+                                            timerString,
+                                            style: TextStyle(
+                                                fontSize: 112.0,
+                                                color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -117,9 +129,30 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
               },
             ),
           ),
+          AnimatedBuilder(
+              animation: _controller,
+              builder: (context, child) {
+                return FloatingActionButton.extended(
+                    onPressed: () {
+                      if (_controller.isAnimating)
+                        _controller.stop();
+                      else {
+                        _controller.reverse(
+                            from: _controller.value == 0.0
+                                ? 1.0
+                                : _controller.value);
+                      }
+                    },
+                    icon: Icon(_controller.isAnimating
+                        ? Icons.pause
+                        : Icons.play_arrow),
+                    label: Text(
+                        _controller.isAnimating ? "Pause" : "Play"));
+              }),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
+
+      /*floatingActionButton: FloatingActionButton.extended(
         icon: Icon(Icons.restore),
         label: Text("Reset",
             style: TextStyle(
@@ -130,7 +163,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
               fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
-      ),
+      ),*/
     );
   }
 
