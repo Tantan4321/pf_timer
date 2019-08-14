@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:pf_timer/configs/AppColors.dart';
+import 'package:pf_timer/models/timer.dart';
 import 'package:pf_timer/widgets/gradient_app_bar.dart';
 
-class Timer extends StatelessWidget {
+class TimerPage extends StatefulWidget {
+  const TimerPage({
+    Key key,
+    @required this.timer,
+  }) : super(key: key);
+
+  final Timer timer;
+
+  @override
+  _TimerPageState createState() => _TimerPageState();
+}
+
+class _TimerPageState extends State<TimerPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,5 +59,4 @@ class Timer extends StatelessWidget {
   void _handleBackButton(BuildContext context) {
     Navigator.of(context).pushNamed("/");
   }
-
 }

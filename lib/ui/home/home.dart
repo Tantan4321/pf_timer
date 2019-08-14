@@ -240,7 +240,7 @@ class HomePageBody extends StatelessWidget {
     Navigator.push(
         context,
         PageRouteBuilder(
-          pageBuilder: (_, __, ___) => Timer(),
+          pageBuilder: (_, __, ___) => TimerPage(),
           transitionsBuilder: (_, animation, __, child) => FadeTransition(
             opacity: animation,
             child: child,
