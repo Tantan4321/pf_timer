@@ -7,6 +7,7 @@ class AppThemes {
     primaryColor: AppColors.coralRed,
     accentColor: AppColors.mikadoYellow,
     cardColor: AppColors.gunmetal,
+    indicatorColor: AppColors.blueberry,
     primaryColorBrightness: Brightness.light,
   );
 
@@ -15,5 +16,6 @@ class AppThemes {
     primaryColor: AppColors.coralRed,
     accentColor: AppColors.mikadoYellow,
     cardColor: AppColors.gunmetal,
+    indicatorColor: AppColors.blueberry,
   );
 }
