@@ -23,12 +23,8 @@ class _TimerPageState extends State<TimerPage> {
       body: Column(
         children: <Widget>[
           GradientAppBar(
-            primary: Theme
-                .of(context)
-                .primaryColor,
-            secondary: Theme
-                .of(context)
-                .accentColor,
+            primary: Theme.of(context).primaryColor,
+            secondary: Theme.of(context).accentColor,
             textColor: AppColors.gunmetal,
             title: "PF Timer",
             leading: IconButton(
