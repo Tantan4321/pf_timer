@@ -46,8 +46,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
-    Size size = new Size(MediaQuery.of(context).size.width,
-        MediaQuery.of(context).size.height - 66);
 
     return Scaffold(
       body: Column(
@@ -75,6 +73,10 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                       child: AnimatedBuilder(
                         animation: _controller,
                         builder: (context, child) {
+                          Size size = Size(
+                              MediaQuery.of(context).size.width,
+                              (MediaQuery.of(context).size.height - 66) *
+                                  _controller.value);
                           return DemoBody(size: size, color: timer.color);
                         },
                       ),
