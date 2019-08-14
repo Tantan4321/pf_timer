@@ -148,6 +148,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
               fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
+        onPressed: () => _restartCountDown(),
       ),
     );
   }
@@ -159,6 +160,12 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
       _controller.reverse(
           from: _controller.value == 0.0 ? 1.0 : _controller.value);
     }
+  }
+
+  void _restartCountDown() {
+    _controller.stop();
+    _controller.reset();
+    _controller.value = 1.0;
   }
 
   void _handleBackButton(BuildContext context) {
