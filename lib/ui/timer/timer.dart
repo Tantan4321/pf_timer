@@ -48,6 +48,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
     ThemeData themeData = Theme.of(context);
 
     return Scaffold(
+      backgroundColor: AppColors.cream,
       body: Column(
         children: <Widget>[
           GradientAppBar(

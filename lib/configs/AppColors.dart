@@ -18,6 +18,7 @@ class AppColors {
   static const Color red = Color(0xFFFA6555);
   static const Color teal = Color(0xFF4FC1A6);
   static const Color yellow = Color(0xFFF6C747);
+  static const Color cream = Color(0xFFFFFFD0);
 
   static const Color coralRed = Color(0xFFFB3640);
   static const Color mikadoYellow = Color(0xFFECC30B);
