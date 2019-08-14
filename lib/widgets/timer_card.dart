@@ -122,7 +122,7 @@ class TimerCard extends StatelessWidget {
             child: Material(
               color: timer.color,
               child: InkWell(
-                onTap: onPress,
+                onTap: () => onPress(index),
                 splashColor: Colors.white10,
                 highlightColor: Colors.white10,
                 child: Stack(

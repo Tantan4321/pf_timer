@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pf_timer/configs/AppColors.dart';
 import 'package:pf_timer/data/timers.dart';
+import 'package:pf_timer/models/timer.dart';
 import 'package:pf_timer/ui/timer/timer.dart';
 import 'package:pf_timer/widgets/gradient_app_bar.dart';
 import 'package:pf_timer/widgets/timer_card.dart';
@@ -45,11 +46,16 @@ class Home extends StatelessWidget {
   void _handleMenuButton() {}
 }
 
-class HomePageBody extends StatelessWidget {
+class HomePageBody extends StatefulWidget {
   const HomePageBody({
     Key key,
   }) : super(key: key);
 
+  @override
+  _HomePageBodyState createState() => _HomePageBodyState();
+}
+
+class _HomePageBodyState extends State<HomePageBody> {
   @override
   Widget build(BuildContext context) {
     var i = 0;
@@ -82,8 +88,9 @@ class HomePageBody extends StatelessWidget {
                   TimerCard(
                     timers[i],
                     index: i++,
-                    onPress: () {
-                      _toTimer(context);
+                    onPress: (index) {
+                      print(index);
+                      _toTimer(context, timers[index]);
                     },
                   ),
                 ])),
@@ -236,11 +243,11 @@ class HomePageBody extends StatelessWidget {
     );
   }
 
-  void _toTimer(BuildContext context) {
+  void _toTimer(BuildContext context, Timer timer) {
     Navigator.push(
         context,
         PageRouteBuilder(
-          pageBuilder: (_, __, ___) => TimerPage(),
+          pageBuilder: (_, __, ___) => TimerPage(timer: timer,),
           transitionsBuilder: (_, animation, __, child) => FadeTransition(
             opacity: animation,
             child: child,
