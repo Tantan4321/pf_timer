@@ -154,9 +154,9 @@ class HomePageBody extends StatelessWidget {
                   TimerCard(
                     timers[i],
                     index: i++,
-                    onPress: () {
-                      //Navigator.of(context).pushNamed("/pokemon-info");
-                    },
+                    onPress: (index) {
+                    _toTimer(context, timers[index]);
+                  },
                   )
                 ])),
           ),
@@ -177,16 +177,16 @@ class HomePageBody extends StatelessWidget {
                   TimerCard(
                     timers[i],
                     index: i++,
-                    onPress: () {
-                      //Navigator.of(context).pushNamed("/pokemon-info");
-                    },
+                    onPress: (index) {
+                    _toTimer(context, timers[index]);
+                  },
                   ),
                   TimerCard(
                     timers[i],
                     index: i++,
-                    onPress: () {
-                      //Navigator.of(context).pushNamed("/pokemon-info");
-                    },
+                    onPress: (index) {
+                    _toTimer(context, timers[index]);
+                  },
                   ),
                 ])),
           ),
@@ -203,9 +203,9 @@ class HomePageBody extends StatelessWidget {
                   TimerCard(
                     timers[i],
                     index: i++,
-                    onPress: () {
-                      //Navigator.of(context).pushNamed("/pokemon-info");
-                    },
+                    onPress: (index) {
+                    _toTimer(context, timers[index]);
+                  },
                   )
                 ])),
           ),
@@ -226,16 +226,16 @@ class HomePageBody extends StatelessWidget {
                   TimerCard(
                     timers[i],
                     index: i++,
-                    onPress: () {
-                      //Navigator.of(context).pushNamed("/pokemon-info");
-                    },
+                    onPress: (index) {
+                    _toTimer(context, timers[index]);
+                  },
                   ),
                   TimerCard(
                     timers[i],
                     index: i++,
-                    onPress: () {
-                      //Navigator.of(context).pushNamed("/pokemon-info");
-                    },
+                    onPress: (index) {
+                    _toTimer(context, timers[index]);
+                  },
                   ),
                 ])),
           ),
@@ -252,9 +252,9 @@ class HomePageBody extends StatelessWidget {
                   TimerCard(
                     timers[i],
                     index: i++,
-                    onPress: () {
-                      //Navigator.of(context).pushNamed("/pokemon-info");
-                    },
+                    onPress: (index) {
+                    _toTimer(context, timers[index]);
+                  },
                   )
                 ])),
           ),
@@ -271,16 +271,16 @@ class HomePageBody extends StatelessWidget {
                   TimerCard(
                     timers[i],
                     index: i++,
-                    onPress: () {
-                      //Navigator.of(context).pushNamed("/pokemon-info");
-                    },
+                    onPress: (index) {
+                    _toTimer(context, timers[index]);
+                  },
                   ),
                   TimerCard(
                     timers[i],
                     index: i++,
-                    onPress: () {
-                      //Navigator.of(context).pushNamed("/pokemon-info");
-                    },
+                    onPress: (index) {
+                    _toTimer(context, timers[index]);
+                  },
                   ),
                 ])),
           ),
