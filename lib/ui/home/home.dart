@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pf_timer/configs/AppColors.dart';
 import 'package:pf_timer/data/timers.dart';
+import 'package:pf_timer/database.dart';
 import 'package:pf_timer/models/timer.dart';
 import 'package:pf_timer/ui/timer/timer.dart';
 import 'package:pf_timer/widgets/custom_container.dart';
@@ -8,6 +9,26 @@ import 'package:pf_timer/widgets/gradient_app_bar.dart';
 import 'package:pf_timer/widgets/timer_card.dart';
 
 class Home extends StatelessWidget {
+  Home({this.database, this.stream});
+
+  final Database database;
+  final Stream<List<TimeStore>> stream;
+
+  void _createTimer(int index) async {
+    await database.createTimer(index);
+  }
+
+  void _resetTimer(Timer timer, int index) async {
+    TimeStore bruh = TimeStore(id: index, seconds: timer.time.inSeconds);
+    await database.setTime(bruh);
+  }
+
+
+  void _delete(int index) async {
+
+    await database.deleteTimer(TimeStore(id: index, seconds: 0));
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -40,7 +61,9 @@ class Home extends StatelessWidget {
               fontWeight: FontWeight.w600,
               color: Colors.black,
             )),
-        onPressed: () {},
+        onPressed: () {
+          _resetTimers();
+        },
       ),
     );
   }
@@ -286,6 +309,12 @@ class Home extends StatelessWidget {
             child: child,
           ),
         ));
+  }
+
+  void _resetTimers() {
+    for(int i = 0; i < timers.length; i++){
+      _resetTimer(timers[i], i);
+    }
   }
 }
 

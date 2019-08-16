@@ -2,15 +2,15 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TimeStore {
-  TimeStore({this.id, this.value});
+  TimeStore({this.id, this.seconds});
   int id;
-  int value;
+  int seconds;
 }
 
 abstract class Database {
   Future<void> createTimer(int index);
-  Future<void> setTime(TimeStore counter);
-  Future<void> deleteTimer(TimeStore counter);
+  Future<void> setTime(TimeStore timer);
+  Future<void> deleteTimer(TimeStore timer);
   Stream<List<TimeStore>> timersStream();
 }
 
@@ -18,18 +18,18 @@ abstract class Database {
 class AppFirestore implements Database {
 
   Future<void> createTimer(int index) async {
-    TimeStore counter = TimeStore(id: index, value: 0);
-    await setTime(counter);
+    TimeStore timer = TimeStore(id: index, seconds: 0);
+    await setTime(timer);
   }
-  Future<void> setTime(TimeStore counter) async {
+  Future<void> setTime(TimeStore timer) async {
 
-    _documentReference(counter).setData({
-      'value' : counter.value,
+    _documentReference(timer).setData({
+      'value' : timer.seconds,
     });
   }
 
-  Future<void> deleteTimer(TimeStore counter) async {
-    _documentReference(counter).delete();
+  Future<void> deleteTimer(TimeStore timer) async {
+    _documentReference(timer).delete();
   }
 
   Stream<List<TimeStore>> timersStream() {
@@ -56,7 +56,7 @@ class FirestoreCountersParser extends FirestoreNodeParser<List<TimeStore>> {
     var counters = querySnapshot.documents.map((documentSnapshot) {
       return TimeStore(
         id: int.parse(documentSnapshot.documentID),
-        value: documentSnapshot['value'],
+        seconds: documentSnapshot['value'],
       );
     }).toList();
     counters.sort((lhs, rhs) => rhs.id.compareTo(lhs.id));
