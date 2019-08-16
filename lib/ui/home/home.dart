@@ -26,8 +26,7 @@ class Home extends StatelessWidget {
               onPressed: () => _handleMenuButton(),
             ),
           ),
-          _buildPrepTab(),
-          new HomePageBody()
+          ..._buildBody(context)
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -48,63 +47,14 @@ class Home extends StatelessWidget {
 
   void _handleMenuButton() {}
 
-  Widget _buildPrepTab() {
-    return CustomContainer(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
-          boxShadow: [
-            new BoxShadow(
-              color: Colors.black26,
-              offset: new Offset(0.0, 10.0),
-              blurRadius: 20.0,
-            )
-          ]),
-      children: <Widget>[
-        GridView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1.9,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
-            padding: EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
-            itemCount: 2,
-            itemBuilder: (context, j) => TimerCard(
-                  timers[j + 11],
-                  index: j + 11,
-                  onPress: (index) {
-                    _toTimer(context, timers[index]);
-                  },
-                ))
-      ],
-    );
+  List<Widget> _buildBody(BuildContext context){
+    return [
+      _buildPrepTab(),
+      _buildScroller(context)
+    ];
   }
-}
 
-void _toTimer(BuildContext context, Timer timer) {
-  Navigator.push(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (_, __, ___) => TimerPage(
-          timer: timer,
-        ),
-        transitionsBuilder: (_, animation, __, child) => FadeTransition(
-          opacity: animation,
-          child: child,
-        ),
-      ));
-}
-
-class HomePageBody extends StatelessWidget {
-  const HomePageBody({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildScroller(BuildContext context){
     var i = 0;
 
     return Expanded(
@@ -288,4 +238,55 @@ class HomePageBody extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildPrepTab() {
+    return CustomContainer(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
+          boxShadow: [
+            new BoxShadow(
+              color: Colors.black26,
+              offset: new Offset(0.0, 10.0),
+              blurRadius: 20.0,
+            )
+          ]),
+      children: <Widget>[
+        GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1.9,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+            ),
+            padding: EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
+            itemCount: 2,
+            itemBuilder: (context, j) => TimerCard(
+                  timers[j + 11],
+                  index: j + 11,
+                  onPress: (index) {
+                    _toTimer(context, timers[index]);
+                  },
+                ))
+      ],
+    );
+  }
+
+  void _toTimer(BuildContext context, Timer timer) {
+    Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => TimerPage(
+            timer: timer,
+          ),
+          transitionsBuilder: (_, animation, __, child) => FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+        ));
+  }
 }
+
+

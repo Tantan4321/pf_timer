@@ -8,7 +8,7 @@ class TimeStore {
 }
 
 abstract class Database {
-  Future<void> createTimer();
+  Future<void> createTimer(int index);
   Future<void> setTime(TimeStore counter);
   Future<void> deleteTimer(TimeStore counter);
   Stream<List<TimeStore>> timersStream();
@@ -17,9 +17,8 @@ abstract class Database {
 // Cloud Firestore
 class AppFirestore implements Database {
 
-  Future<void> createTimer() async {
-    int now = DateTime.now().millisecondsSinceEpoch;
-    TimeStore counter = TimeStore(id: now, value: 0);
+  Future<void> createTimer(int index) async {
+    TimeStore counter = TimeStore(id: index, value: 0);
     await setTime(counter);
   }
   Future<void> setTime(TimeStore counter) async {
@@ -44,7 +43,7 @@ class AppFirestore implements Database {
     return Firestore.instance.collection(rootPath).document('${counter.id}');
   }
 
-  static final String rootPath = 'counters';
+  static final String rootPath = 'timers';
 }
 
 abstract class FirestoreNodeParser<T> {
