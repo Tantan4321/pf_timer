@@ -11,6 +11,7 @@ abstract class Database {
   Future<void> createTimer(int index);
   Future<void> setTime(TimeStore timer);
   Future<void> deleteTimer(TimeStore timer);
+  Future<int> getValue(int index);
   Stream<List<TimeStore>> timersStream();
 }
 
@@ -30,6 +31,15 @@ class AppFirestore implements Database {
 
   Future<void> deleteTimer(TimeStore timer) async {
     _documentReference(timer).delete();
+  }
+
+  Future<int> getValue(int index) async {
+    int ret;
+    _documentReference(TimeStore(id: index))
+        .get().then((documentSnapshot) =>
+        ret = documentSnapshot.data['key']
+    );
+    return ret;
   }
 
   Stream<List<TimeStore>> timersStream() {
