@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pf_timer/configs/AppColors.dart';
+import 'package:pf_timer/database.dart';
 import 'package:pf_timer/models/timer.dart';
 import 'package:pf_timer/widgets/custom_timer_painter.dart';
 import 'package:pf_timer/widgets/gradient_app_bar.dart';
@@ -9,9 +10,14 @@ class TimerPage extends StatefulWidget {
   const TimerPage({
     Key key,
     @required this.timer,
+    @required this.index,
+    this.database
   }) : super(key: key);
 
   final Timer timer;
+  final int index;
+
+  final Database database;
 
   @override
   _TimerPageState createState() => _TimerPageState();
@@ -30,11 +36,14 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      value: 1.0, //TODO: initial completion percentage, call from database
-      vsync: this,
-      duration: Duration(minutes: timer.time.inMinutes),
-    );
+    widget.database.getValue(widget.index).then((onValue){
+      _controller = AnimationController(
+        value: onValue / timer.time.inSeconds,
+        vsync: this,
+        duration: Duration(minutes: timer.time.inMinutes),
+      );
+    });
+
   }
 
   @override
@@ -170,6 +179,8 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   }
 
   void _handleBackButton(BuildContext context) {
+    Duration d = _controller.duration * _controller.value;
+    widget.database.setTime(TimeStore(id: widget.index, seconds: d.inSeconds));
     Navigator.of(context).pushNamed("/");
   }
 }
