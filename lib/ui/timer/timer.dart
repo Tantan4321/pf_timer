@@ -10,14 +10,11 @@ class TimerPage extends StatefulWidget {
   const TimerPage({
     Key key,
     @required this.timer,
-    @required this.index,
-    this.database
+    this.percent = 1.0,
   }) : super(key: key);
 
   final Timer timer;
-  final int index;
-
-  final Database database;
+  final double percent;
 
   @override
   _TimerPageState createState() => _TimerPageState();
@@ -36,14 +33,12 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    widget.database.getValue(widget.index).then((onValue){
-      _controller = AnimationController(
-        value: onValue / timer.time.inSeconds,
-        vsync: this,
-        duration: Duration(minutes: timer.time.inMinutes),
-      );
-    });
 
+    _controller = AnimationController(
+      value: widget.percent,
+      vsync: this,
+      duration: Duration(minutes: timer.time.inMinutes),
+    );
   }
 
   @override
@@ -180,7 +175,8 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
 
   void _handleBackButton(BuildContext context) {
     Duration d = _controller.duration * _controller.value;
-    widget.database.setTime(TimeStore(id: widget.index, seconds: d.inSeconds));
+    /*widget.database
+        .setTime(TimeStore(id: widget.percent, seconds: d.inSeconds));*/
     Navigator.of(context).pushNamed("/");
   }
 }

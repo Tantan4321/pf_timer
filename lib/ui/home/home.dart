@@ -8,6 +8,8 @@ import 'package:pf_timer/widgets/custom_container.dart';
 import 'package:pf_timer/widgets/gradient_app_bar.dart';
 import 'package:pf_timer/widgets/timer_card.dart';
 
+import 'package:screen/screen.dart';
+
 class Home extends StatelessWidget {
   Home({this.database, this.stream});
 
@@ -19,13 +21,12 @@ class Home extends StatelessWidget {
   }
 
   void _resetTimer(Timer timer, int index) async {
-    TimeStore bruh = TimeStore(id: index, seconds: timer.time.inSeconds);
-    await database.setTime(bruh);
+    TimeStore thisTimer = TimeStore(id: index, seconds: timer.time.inSeconds);
+    await database.setTime(thisTimer);
   }
 
 
   void _delete(int index) async {
-
     await database.deleteTimer(TimeStore(id: index, seconds: 0));
   }
 
@@ -102,14 +103,14 @@ class Home extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      _toTimer(context, timers[index]);
+                      _toTimer(context, timers[index], index);
                     },
                   ),
                   TimerCard(
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      _toTimer(context, timers[index]);
+                      _toTimer(context, timers[index], index);
                     },
                   ),
                 ])),
@@ -128,7 +129,7 @@ class Home extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      _toTimer(context, timers[index]);
+                      _toTimer(context, timers[index], index);
                     },
                   )
                 ])),
@@ -151,14 +152,14 @@ class Home extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      _toTimer(context, timers[index]);
+                      _toTimer(context, timers[index], index);
                     },
                   ),
                   TimerCard(
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      _toTimer(context, timers[index]);
+                      _toTimer(context, timers[index], index);
                     },
                   ),
                 ])),
@@ -177,7 +178,7 @@ class Home extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      _toTimer(context, timers[index]);
+                      _toTimer(context, timers[index], index);
                     },
                   )
                 ])),
@@ -200,14 +201,14 @@ class Home extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      _toTimer(context, timers[index]);
+                      _toTimer(context, timers[index], index);
                     },
                   ),
                   TimerCard(
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      _toTimer(context, timers[index]);
+                      _toTimer(context, timers[index], index);
                     },
                   ),
                 ])),
@@ -226,7 +227,7 @@ class Home extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      _toTimer(context, timers[index]);
+                      _toTimer(context, timers[index], index);
                     },
                   )
                 ])),
@@ -245,14 +246,14 @@ class Home extends StatelessWidget {
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      _toTimer(context, timers[index]);
+                      _toTimer(context, timers[index], index);
                     },
                   ),
                   TimerCard(
                     timers[i],
                     index: i++,
                     onPress: (index) {
-                      _toTimer(context, timers[index]);
+                      _toTimer(context, timers[index], index);
                     },
                   ),
                 ])),
@@ -290,19 +291,25 @@ class Home extends StatelessWidget {
                   timers[j + 11],
                   index: j + 11,
                   onPress: (index) {
-                    _toTimer(context, timers[index]);
+                    _toTimer(context, timers[index], index);
                   },
                 ))
       ],
     );
   }
 
-  void _toTimer(BuildContext context, Timer timer) {
+  void _toTimer(BuildContext context, Timer timer, int index) {
+    Screen.keepOn(true);
+    double temp;
+    database.getValue(index).then((onValue){
+      temp = onValue.toDouble();
+    });
     Navigator.push(
         context,
         PageRouteBuilder(
           pageBuilder: (_, __, ___) => TimerPage(
             timer: timer,
+            //percent: temp / timer.time.inSeconds.toDouble(),
           ),
           transitionsBuilder: (_, animation, __, child) => FadeTransition(
             opacity: animation,
