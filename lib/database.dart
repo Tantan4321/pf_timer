@@ -39,6 +39,7 @@ class AppFirestore implements Database {
         .get().then((documentSnapshot) =>
         ret = documentSnapshot.data['key']
     );
+
     return ret;
   }
 
